@@ -1,14 +1,14 @@
-;;; capstone-lisp.asd --- ASDF system definition for capstone-lisp
+;;; capstone.asd --- ASDF system definition for capstone
 
 (cl:eval-when (:load-toplevel :execute)
   (asdf:load-system "cffi-grovel"))
 
-(defpackage #:capstone-lisp-system (:use #:asdf #:cl #:cffi-grovel))
-(in-package #:capstone-lisp-system)
+(defpackage #:capstone-system (:use #:asdf #:cl #:cffi-grovel))
+(in-package #:capstone-system)
 
-(defsystem "capstone-lisp"
+(defsystem "capstone"
     :depends-on (#:cffi #:cl-fad)
-    :name "capstone-lisp"
+    :name "capstone"
     :author "Jingtao xu <jingtaozf@gmail.com>"
     :license "MIT"
     :description "Lisp-capstone interface"
@@ -26,4 +26,4 @@ in #p\"capstone-include-dir.lisp\".
      (grovel-file "grovel")
      (:file "ffi-interface")
      (:file "api"))
-    :in-order-to ((test-op (test-op #:capstone-lisp-tests))))
+    :in-order-to ((test-op (test-op #:capstone-tests))))

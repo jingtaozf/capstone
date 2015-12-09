@@ -1,7 +1,7 @@
 ;;; capstone-tests.asdf --- system definition for the capstone
 ;;; test suite
 
-(defsystem "capstone-lisp-tests"
+(defsystem "capstone-tests"
   :name "capstone-tests"
   :description "capstone tests"
   :author "jingtaozf <jingtaozf@gmail.com>"
@@ -15,7 +15,7 @@
      (:file "test")
      )
     :serial t))
-  :depends-on (#:capstone-lisp #:fiveam)
+  :depends-on (#:capstone #:fiveam)
   :perform (test-op (o c)
                     #+asdf3
                     (funcall (intern "RUN-TESTS" :capstone-tests))))
