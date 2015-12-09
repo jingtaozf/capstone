@@ -1,4 +1,4 @@
-(in-package #:capstone.cffi)
+(in-package #:capstone)
 
 (cc-flags #.(format nil "-I~A" *capstone-include-dir*))
 

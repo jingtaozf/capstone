@@ -1,4 +1,4 @@
-(in-package #:capstone.cffi)
+(in-package #:capstone)
 
 (defun read-path ()
   (format *query-io* "Enter directory containing capstone's C header files: ")

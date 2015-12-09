@@ -11,7 +11,7 @@
   ((:module "test"
     :pathname "t/"
     :components
-    ((:file "packages")
+    (
      (:file "test")
      )
     :serial t))
