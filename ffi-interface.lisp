@@ -4,7 +4,7 @@
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (define-foreign-library capstone-library
     (:darwin "libcapstone.3.dylib")
-    (:unix "libcapstone.3.so")
+    (:unix "libcapstone.so")
     (:windows "libcapstone.3.dll")
     (t (:default "libcapstone")))
   (use-foreign-library capstone-library))
@@ -57,7 +57,7 @@
           until (= code 0)
           do (write-char (code-char code) stream))))
 
-(defun cs-disasm-test (handle &optional
+(defun cs-disasm (handle base-address &optional
                        (arm-code '(237 255 255 235 4 224 45 229 0 0 0 0 224 131 34
                                    229 241 2 3 14 0 0 160 227 2 48 193 231 0 0
                                    83 227 0 2 1 241 5 64 208 232 244 128 0 0)))
@@ -66,7 +66,7 @@
           for x in arm-code
           do (setf (mem-ref buffer 'uint8-t i) x))
     (with-foreign-object (pinsn '(:pointer (:struct cs-insn)))
-      (let ((count (.cs-disasm handle buffer (1- (length arm-code)) #x1000 0 pinsn))
+      (let ((count (.cs-disasm handle buffer (1- (length arm-code)) base-address 0 pinsn))
             (p-inst (mem-ref pinsn :pointer)))
         (unwind-protect
           (loop for i from 1 to count

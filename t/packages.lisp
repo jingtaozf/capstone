@@ -1,3 +1,3 @@
-(defpackage #:capstone.test
-  (:use #:cl)
+(defpackage #:capstone-tests
+  (:use #:cl :cffi #:capstone #:capstone.cffi)
   (:export #:run-tests))
