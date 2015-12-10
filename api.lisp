@@ -4,8 +4,8 @@
 ;; Description: 
 ;; Author: Jingtao Xu <jingtaozf@gmail.com>
 ;; Created: 2015.12.06 14:45:47(+0800)
-;; Last-Updated: 2015.12.09 21:44:37(+0800)
-;;     Update #: 33
+;; Last-Updated: 2015.12.10 23:09:05(+0800)
+;;     Update #: 72
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Commentary: 
@@ -19,6 +19,7 @@
     (loop with len = (/ (length c-raw-string) 3)
           with arr = (make-array len :element-type '(unsigned-byte 8))
           for i from 0 to (1- len)
+          ;; just a simple one,without type check
           for byte-str = (format nil "~c~c" 
                                  (aref c-raw-string (+ (* i 3) 1))
                                  (aref c-raw-string (+ (* i 3) 2)))
@@ -33,35 +34,43 @@
         finally (return arr)))
 
 ;;;; api
-(defun cs-open (&key (arch :arm) (mode :arm))
+(defmacro cs-funcall (func-name &rest args)
+  (with-unique-names (cs-err)
+    `(let ((,cs-err (funcall ',func-name ,@args)))
+       (unless (eq :ok ,cs-err)
+         (error "capstone function ~a returned error:~a" ',func-name ,cs-err)))))
+
+(defun cs-option (handle opt-type opt-value)
+  (cs-funcall .cs-option handle
+              (foreign-enum-value 'cs-opt-type opt-type)
+              (foreign-enum-value 'cs-opt-value opt-value)))
+
+(defun cs-open (&key (arch :arm) (mode :arm) (detail t))
   (with-foreign-object (csh 'csh)
-    (let ((cs-err (.cs-open (foreign-enum-value 'cs-arch arch)
-                            (foreign-enum-value 'cs-mode mode)
-                            csh)))
-      (unless (eq :ok cs-err)
-        (error "cs-open returned error:~a" cs-err))
-      (mem-ref csh 'csh))))
+    (cs-funcall .cs-open (foreign-enum-value 'cs-arch arch)
+                (foreign-enum-value 'cs-mode mode)
+                csh)
+    (when detail
+      (cs-option (mem-ref csh 'csh) :detail :on))
+    (mem-ref csh 'csh)))
 
 (defun cs-close (handle)
   (with-foreign-object (csh 'csh)
     (setf (mem-ref csh 'csh) handle)
-    (.cs-close csh)))
+    (cs-funcall .cs-close csh)))
 
-(defmacro with-capstone-handle ((handle &key (arch :arm) (mode :arm)) &body body)
-  `(let ((,handle (cs-open :arch ,arch :mode ,mode)))
+(defvar *capstone-arch* nil)
+(defvar *capstone-mode* nil)
+(defmacro with-capstone-handle ((handle &key (arch :arm) (mode :arm) (detail t))
+                                &body body)
+  `(let ((,handle (cs-open :arch ,arch :mode ,mode :detail ,detail))
+         (*capstone-arch* ,arch)
+         (*capstone-mode* ,mode))
      (unwind-protect
          (progn ,@body)
        (cs-close ,handle))))
 
 ;;; TODO with-cs-handle
-
-(defun cs-option-detail-on (handle)
-  (let ((cs-err (.cs-option handle (foreign-enum-value 'cs-opt-type :detail)
-                              (foreign-enum-value 'cs-opt-value :on))))
-    (unless (eq :ok cs-err)
-      (error "cs-option returned error:~a" cs-err))
-    t))
-
 (defstruct arm-op
   vector-index shift.type shift.value
   type reg imm fp mem setend subtracted)
@@ -75,32 +84,55 @@
 
 (defstruct insn 
   id address size bytes mnemonic op-str detail)
-(defun cs-insn-to-alist (p)
+
+(defun cs-arm-to-lisp (detail)
+  (macrolet ((%detail (x)
+               `(foreign-slot-value 
+                 (foreign-slot-value detail '(:struct cs-detail) 'arm)
+                 '(:struct cs-arm) ',x)))
+    ;; (foreign-enum-keyword 
+    ;; (make-insn-arm :usermode (%detail usermode)
+    ;;                ;; :vector-size (%arm vector-size)
+    ;;                ;; :vector-data (%arm vector-data)
+    ;;                ;; :cps-mode (%arm cps-mode)
+    ;;                ;; :cps-flag (%arm cps-flag)
+    ;;                ;; :cc (%arm cc)
+    ;;                ;; :update-flags (%arm update-flags)
+    ;;                ;; :writeback (%arm writeback)
+    ;;                ;; :mem-barrier (%arm mem-barrier)
+    ;;                ;; :op-count (%arm op-count)
+    ;;                ;; :operands (%arm operands)
+    ;; )
+    ))
+
+(defun cs-detail-to-lisp (detail)
+  (macrolet ((%detail (x)
+               `(foreign-slot-value detail '(:struct cs-detail) ',x)))
+    (make-insn-detail
+     :regs-read (byte-array-to-lisp (%detail regs-read)
+                                    (%detail regs-read-count))
+     :regs-read-count (%detail regs-read-count)  
+     :regs-write (byte-array-to-lisp (%detail regs-write)
+                                     (%detail regs-write-count))
+     :regs-write-count (%detail regs-write-count)  
+     :groups (byte-array-to-lisp (%detail groups)
+                                 (%detail groups-count))
+     :groups-count (%detail groups-count)
+     :arm (cs-arm-to-lisp detail)
+     )))
+
+(defun cs-insn-to-lisp (p)
   (macrolet ((%insn-slot (x)
-             `(foreign-slot-value p '(:struct cs-insn) ,x))
-             (%detail (x)
-               `(foreign-slot-value detail '(:struct cs-detail) ,x)))
-    (let* ((size (%insn-slot 'size))
-           (bytes (%insn-slot 'bytes))
-           (detail (%insn-slot 'detail))
-           (arm )
-           (insn-detail (make-insn-detail
-                         :regs-read (byte-array-to-lisp (%detail 'regs-read)
-                                                        (%detail 'regs-read-count))
-                         :regs-read-count (%detail 'regs-read-count)  
-                         :regs-write (byte-array-to-lisp (%detail 'regs-write)
-                                                        (%detail 'regs-write-count))
-                         :regs-write-count (%detail 'regs-write-count)  
-                         :groups (byte-array-to-lisp (%detail 'groups)
-                                                        (%detail 'groups-count))
-                         :groups-count (%detail 'groups-count)
-                         :arm arm)))
-      (make-insn :id (%insn-slot 'id)
-                 :address (%insn-slot 'address)
+             `(foreign-slot-value p '(:struct cs-insn) ',x)))
+    (let* ((size (%insn-slot size))
+           (bytes (%insn-slot bytes))
+           (insn-detail (cs-detail-to-lisp (%insn-slot detail))))
+      (make-insn :id (%insn-slot id)
+                 :address (%insn-slot address)
                  :size size
                  :bytes (byte-array-to-lisp bytes size)
-                 :mnemonic (foreign-string-to-lisp (%insn-slot 'mnemonic))
-                 :op-str (foreign-string-to-lisp (%insn-slot 'op-str))
+                 :mnemonic (foreign-string-to-lisp (%insn-slot mnemonic))
+                 :op-str (foreign-string-to-lisp (%insn-slot op-str))
                  :detail insn-detail))))
 (defun cs-disasm (handle base-address arm-code)
   (with-foreign-object (buffer 'uint8-t (length arm-code))
@@ -113,6 +145,6 @@
         (unwind-protect
           (loop for i from 1 to count
                 for p = p-insn then (inc-pointer p size-of-cs-insn)
-                collect (cs-insn-to-alist p))
+                collect (cs-insn-to-lisp p))
           (.cs-free p-insn count))))))
 

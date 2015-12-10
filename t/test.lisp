@@ -4,8 +4,8 @@
 ;; Description: 
 ;; Author: Jingtao Xu <jingtaozf@gmail.com>
 ;; Created: 2015.12.09 11:20:17(+0800)
-;; Last-Updated: 2015.12.09 21:45:44(+0800)
-;;     Update #: 15
+;; Last-Updated: 2015.12.10 22:00:15(+0800)
+;;     Update #: 16
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Commentary: 
@@ -156,8 +156,7 @@
                                                 :GROUPS #(147)
                                                 :GROUPS-COUNT 1
                                                 :ARM NIL))) 
-           (with-capstone-handle (handle :arch :arm :mode :arm)
-             (cs-option-detail-on handle)
+           (with-capstone-handle (handle :arch :arm :mode :arm :detail t)
              (cs-disasm handle #x1000
                         (c-raw-string-to-binary-array
                          "\xED\xFF\xFF\xEB\x04\xe0\x2d\xe5\x00\x00\x00\x00\xe0\x83\x22\xe5\xf1\x02\x03\x0e\x00\x00\xa0\xe3\x02\x30\xc1\xe7\x00\x00\x53\xe3\x00\x02\x01\xf1\x05\x40\xd0\xe8\xf4\x80\x00\x00")

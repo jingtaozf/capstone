@@ -1,5 +1,5 @@
 (defpackage #:capstone
-  (:use #:cl #:cffi)
+  (:use #:cl #:cffi :xjt-utils)
   (:import-from #:cffi #:parse-type #:find-type-parser)
   (:export 
    #:cs-arch

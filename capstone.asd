@@ -7,7 +7,7 @@
 (in-package #:capstone-system)
 
 (defsystem "capstone"
-    :depends-on (#:cffi #:cl-fad)
+    :depends-on (#:cffi #:cl-fad :xjt-utils)
     :name "capstone"
     :author "Jingtao xu <jingtaozf@gmail.com>"
     :license "MIT"
