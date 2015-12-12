@@ -4,8 +4,8 @@
 ;; Description: 
 ;; Author: Jingtao Xu <jingtaozf@gmail.com>
 ;; Created: 2015.12.06 14:45:47(+0800)
-;; Last-Updated: 2015.12.12 19:34:33(+0800)
-;;     Update #: 81
+;; Last-Updated: 2015.12.12 20:51:32(+0800)
+;;     Update #: 86
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Commentary: 
@@ -70,7 +70,8 @@
          (progn ,@body)
        (cs-close ,handle))))
 
-;;; TODO with-cs-handle
+(defstruct arm-op-mem
+  base index scale disp)
 (defstruct arm-op
   vector-index shift.type shift.value
   type reg imm fp mem setend subtracted)
@@ -85,6 +86,15 @@
 (defstruct insn 
   id address size bytes mnemonic op-str detail)
 
+(defun cs-arm-op-mem-to-lisp (arm-op)
+  (macrolet ((%arm-op-mem (x)
+               `(foreign-slot-value arm-op-mem '(:struct arm-op-mem) ',x)))
+    (let ((arm-op-mem (foreign-slot-pointer arm-op '(:struct cs-arm-op) 'mem)))
+      (make-arm-op-mem :base (%arm-op-mem base)
+                       :index (%arm-op-mem index)
+                       :scale (%arm-op-mem scale)
+                       :disp (%arm-op-mem disp)))))
+
 (defun cs-arm-op-to-lisp (arm-op)
   (macrolet ((%arm-op (x)
                `(foreign-slot-value arm-op '(:struct cs-arm-op) ',x)))
@@ -95,7 +105,7 @@
                :reg (%arm-op reg)
                :imm (%arm-op imm)
                :fp (%arm-op fp)
-               :mem (%arm-op mem)
+               :mem (cs-arm-op-mem-to-lisp arm-op)
                :setend (%arm-op setend)
                :subtracted (%arm-op subtracted)
   )))
