@@ -30,3 +30,7 @@
   (insn (:pointer (:struct cs-insn)))
   (count size-t))
 
+(defcfun ("cs_reg_name" cs-reg-name) :string
+  (csh csh)
+  (reg :unsigned-int))
+

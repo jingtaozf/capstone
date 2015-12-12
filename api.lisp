@@ -4,8 +4,8 @@
 ;; Description: 
 ;; Author: Jingtao Xu <jingtaozf@gmail.com>
 ;; Created: 2015.12.06 14:45:47(+0800)
-;; Last-Updated: 2015.12.10 23:09:05(+0800)
-;;     Update #: 72
+;; Last-Updated: 2015.12.12 19:34:33(+0800)
+;;     Update #: 81
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Commentary: 
@@ -85,25 +85,44 @@
 (defstruct insn 
   id address size bytes mnemonic op-str detail)
 
+(defun cs-arm-op-to-lisp (arm-op)
+  (macrolet ((%arm-op (x)
+               `(foreign-slot-value arm-op '(:struct cs-arm-op) ',x)))
+  (make-arm-op :vector-index (%arm-op vector-index)
+               :shift.type (%arm-op shift.type)
+               :shift.value (%arm-op shift.value)
+               :type (%arm-op type)
+               :reg (%arm-op reg)
+               :imm (%arm-op imm)
+               :fp (%arm-op fp)
+               :mem (%arm-op mem)
+               :setend (%arm-op setend)
+               :subtracted (%arm-op subtracted)
+  )))
 (defun cs-arm-to-lisp (detail)
-  (macrolet ((%detail (x)
-               `(foreign-slot-value 
-                 (foreign-slot-value detail '(:struct cs-detail) 'arm)
-                 '(:struct cs-arm) ',x)))
-    ;; (foreign-enum-keyword 
-    ;; (make-insn-arm :usermode (%detail usermode)
-    ;;                ;; :vector-size (%arm vector-size)
-    ;;                ;; :vector-data (%arm vector-data)
-    ;;                ;; :cps-mode (%arm cps-mode)
-    ;;                ;; :cps-flag (%arm cps-flag)
-    ;;                ;; :cc (%arm cc)
-    ;;                ;; :update-flags (%arm update-flags)
-    ;;                ;; :writeback (%arm writeback)
-    ;;                ;; :mem-barrier (%arm mem-barrier)
-    ;;                ;; :op-count (%arm op-count)
-    ;;                ;; :operands (%arm operands)
-    ;; )
-    ))
+  (macrolet ((%arm (x)
+               `(foreign-slot-value arm '(:struct cs-arm) ',x)))
+    (let ((arm (foreign-slot-pointer detail '(:struct cs-detail) 'arm)))
+    (make-insn-arm :usermode (%arm usermode)
+                   :vector-size (%arm vector-size)
+                   :vector-data (%arm vector-data)
+                   :cps-mode (%arm cps-mode)
+                   :cps-flag (%arm cps-flag)
+                   :cc (%arm cc)
+                   :update-flags (%arm update-flags)
+                   :writeback (%arm writeback)
+                   :mem-barrier (%arm mem-barrier)
+                   :op-count (%arm op-count)
+                   :operands (loop with operands = (make-array (%arm op-count))
+                                   with p = (foreign-slot-pointer arm
+                                                    '(:struct cs-arm)
+                                                    'operands)
+                                   for i from 0 below (%arm op-count)
+                                   do (setf (aref operands i)
+                                              (cs-arm-op-to-lisp p))
+                                      (incf-pointer p size-of-cs-arm-op)
+                                   finally (return operands))
+    ))))
 
 (defun cs-detail-to-lisp (detail)
   (macrolet ((%detail (x)

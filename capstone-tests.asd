@@ -18,4 +18,4 @@
   :depends-on (#:capstone #:fiveam)
   :perform (test-op (o c)
                     #+asdf3
-                    (funcall (intern "RUN-TESTS" :capstone-tests))))
+                    (funcall (intern "RUN-TESTS" :capstone))))
