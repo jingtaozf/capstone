@@ -19,6 +19,7 @@
 (ctype csh  "csh")
 (ctype uint8-t  "uint8_t")
 (ctype int32-t "int32_t")
+(ctype int64-t "int64_t")
 (ctype uint64-t "uint64_t")
 (ctype uint16-t "uint16_t")
 
@@ -28,32 +29,152 @@
 
 ;;;; arm64
 (cenum arm64-cc
-	((:ARM64_CC_INVALID "ARM64_CC_INVALID"))
-	((:ARM64_CC_EQ "ARM64_CC_EQ" ))    ;; Equal
-	((:ARM64_CC_NE "ARM64_CC_NE" ))    ;; Not equal:                 Not equal, or unordered
-	((:ARM64_CC_HS "ARM64_CC_HS" ))    ;; Unsigned higher or same:   >, ==, or unordered
-	((:ARM64_CC_LO "ARM64_CC_LO" ))    ;; Unsigned lower or same:    Less than
-	((:ARM64_CC_MI "ARM64_CC_MI" ))    ;; Minus, negative:           Less than
-	((:ARM64_CC_PL "ARM64_CC_PL" ))    ;; Plus, positive or zero:    >, ==, or unordered
-	((:ARM64_CC_VS "ARM64_CC_VS" ))    ;; Overflow:                  Unordered
-	((:ARM64_CC_VC "ARM64_CC_VC" ))    ;; No overflow:               Ordered
-	((:ARM64_CC_HI "ARM64_CC_HI" ))    ;; Unsigned higher:           Greater than, or unordered
-	((:ARM64_CC_LS "ARM64_CC_LS" ))    ;; Unsigned lower or same:    Less than or equal
-	((:ARM64_CC_GE "ARM64_CC_GE" ))    ;; Greater than or equal:     Greater than or equal
-	((:ARM64_CC_LT "ARM64_CC_LT" ))    ;; Less than:                 Less than, or unordered
-	((:ARM64_CC_GT "ARM64_CC_GT" ))    ;; Signed greater than:       Greater than
-	((:ARM64_CC_LE "ARM64_CC_LE" ))    ;; Signed less than or equal: <, ==, or unordered
-	((:ARM64_CC_AL "ARM64_CC_AL" ))    ;; Always (unconditional):    Always (unconditional)
-	((:ARM64_CC_NV "ARM64_CC_NV" ))    ;; Always (unconditional):   Always (unconditional)
+	((:INVALID "ARM64_CC_INVALID"))
+	((:EQ "ARM64_CC_EQ" ))    ;; Equal
+	((:NE "ARM64_CC_NE" ))    ;; Not equal:                 Not equal, or unordered
+	((:HS "ARM64_CC_HS" ))    ;; Unsigned higher or same:   >, ==, or unordered
+	((:LO "ARM64_CC_LO" ))    ;; Unsigned lower or same:    Less than
+	((:MI "ARM64_CC_MI" ))    ;; Minus, negative:           Less than
+	((:PL "ARM64_CC_PL" ))    ;; Plus, positive or zero:    >, ==, or unordered
+	((:VS "ARM64_CC_VS" ))    ;; Overflow:                  Unordered
+	((:VC "ARM64_CC_VC" ))    ;; No overflow:               Ordered
+	((:HI "ARM64_CC_HI" ))    ;; Unsigned higher:           Greater than, or unordered
+	((:LS "ARM64_CC_LS" ))    ;; Unsigned lower or same:    Less than or equal
+	((:GE "ARM64_CC_GE" ))    ;; Greater than or equal:     Greater than or equal
+	((:LT "ARM64_CC_LT" ))    ;; Less than:                 Less than, or unordered
+	((:GT "ARM64_CC_GT" ))    ;; Signed greater than:       Greater than
+	((:LE "ARM64_CC_LE" ))    ;; Signed less than or equal: <, ==, or unordered
+	((:AL "ARM64_CC_AL" ))    ;; Always (unconditional):    Always (unconditional)
+	((:NV "ARM64_CC_NV" ))    ;; Always (unconditional):   Always (unconditional)
         )
 
+(cenum arm64-vas 
+	((:INVALID "ARM64_VAS_INVALID"))
+	((:8B "ARM64_VAS_8B"))
+	((:16B "ARM64_VAS_16B"))
+	((:4H "ARM64_VAS_4H"))
+	((:8H "ARM64_VAS_8H"))
+	((:2S "ARM64_VAS_2S"))
+	((:4S "ARM64_VAS_4S"))
+	((:1D "ARM64_VAS_1D"))
+	((:2D "ARM64_VAS_2D"))
+	((:1Q "ARM64_VAS_1Q"))
+)
+(cenum arm64-vess 
+	((:INVALID "ARM64_VESS_INVALID"))
+	((:B "ARM64_VESS_B"))
+	((:H "ARM64_VESS_H"))
+	((:S "ARM64_VESS_S"))
+	((:D "ARM64_VESS_D"))
+)
+(cenum arm64-shifter 
+	((:INVALID "ARM64_SFT_INVALID"))
+	((:LSL "ARM64_SFT_LSL"))
+	((:MSL "ARM64_SFT_MSL"))
+	((:LSR "ARM64_SFT_LSR"))
+	((:ASR "ARM64_SFT_ASR"))
+	((:ROR "ARM64_SFT_ROR"))
+)
+
+(cenum arm64-extender 
+	((:INVALID "ARM64_EXT_INVALID"))
+	((:UXTB "ARM64_EXT_UXTB"))
+	((:UXTH "ARM64_EXT_UXTH"))
+	((:UXTW "ARM64_EXT_UXTW"))
+	((:UXTX "ARM64_EXT_UXTX"))
+	((:SXTB "ARM64_EXT_SXTB"))
+	((:SXTH "ARM64_EXT_SXTH"))
+	((:SXTW "ARM64_EXT_SXTW"))
+	((:SXTX "ARM64_EXT_SXTX"))
+)
+(cenum arm64-op-type 
+	((:INVALID "ARM64_OP_INVALID")) ;; = CS_OP_INVALID (Uninitialized).
+	((:REG "ARM64_OP_REG")) ;; = CS_OP_REG (Register operand).
+	((:IMM "ARM64_OP_IMM")) ;; = CS_OP_IMM (Immediate operand).
+	((:MEM "ARM64_OP_MEM")) ;; = CS_OP_MEM (Memory operand).
+	((:FP "ARM64_OP_FP"))  ;; = CS_OP_FP (Floating-Point operand).
+	((:CIMM "ARM64_OP_CIMM")) ;; C-Immediate
+	((:REG_MRS "ARM64_OP_REG_MRS")) ;; MRS register operand.
+	((:REG_MSR "ARM64_OP_REG_MSR")) ;; MSR register operand.
+	((:PSTATE "ARM64_OP_PSTATE")) ;; PState operand.
+	((:SYS "ARM64_OP_SYS")) ;; SYS operand for IC/DC/AT/TLBI instructions.
+	((:PREFETCH "ARM64_OP_PREFETCH")) ;; Prefetch operand (PRFM).
+	((:BARRIER "ARM64_OP_BARRIER")) ;; Memory barrier operand (ISB/DMB/DSB instructions).
+)
+
+(cstruct arm64-op-mem "arm64_op_mem"
+         (base "base" :type :unsigned-int)
+         (index "index" :type :unsigned-int)
+         (disp "disp" :type int32-t)
+         )
+(cenum arm64-pstate 
+	((:INVALID "ARM64_PSTATE_INVALID"))
+	((:SPSEL "ARM64_PSTATE_SPSEL"))
+	((:DAIFSET "ARM64_PSTATE_DAIFSET"))
+	((:DAIFCLR "ARM64_PSTATE_DAIFCLR"))
+) 
+
+(cenum arm64-prefetch-op 
+	((:INVALID "ARM64_PRFM_INVALID"))
+	((:PLDL1KEEP "ARM64_PRFM_PLDL1KEEP"))
+	((:PLDL1STRM "ARM64_PRFM_PLDL1STRM"))
+	((:PLDL2KEEP "ARM64_PRFM_PLDL2KEEP"))
+	((:PLDL2STRM "ARM64_PRFM_PLDL2STRM"))
+	((:PLDL3KEEP "ARM64_PRFM_PLDL3KEEP"))
+	((:PLDL3STRM "ARM64_PRFM_PLDL3STRM"))
+	((:PLIL1KEEP "ARM64_PRFM_PLIL1KEEP"))
+	((:PLIL1STRM "ARM64_PRFM_PLIL1STRM"))
+	((:PLIL2KEEP "ARM64_PRFM_PLIL2KEEP"))
+	((:PLIL2STRM "ARM64_PRFM_PLIL2STRM"))
+	((:PLIL3KEEP "ARM64_PRFM_PLIL3KEEP"))
+	((:PLIL3STRM "ARM64_PRFM_PLIL3STRM"))
+	((:PSTL1KEEP "ARM64_PRFM_PSTL1KEEP"))
+	((:PSTL1STRM "ARM64_PRFM_PSTL1STRM"))
+	((:PSTL2KEEP "ARM64_PRFM_PSTL2KEEP"))
+	((:PSTL2STRM "ARM64_PRFM_PSTL2STRM"))
+	((:PSTL3KEEP "ARM64_PRFM_PSTL3KEEP"))
+	((:PSTL3STRM "ARM64_PRFM_PSTL3STRM"))
+)
+(cenum arm64-barrier-op 
+	((:INVALID "ARM64_BARRIER_INVALID"))
+	((:OSHLD "ARM64_BARRIER_OSHLD"))
+	((:OSHST "ARM64_BARRIER_OSHST"))
+	((:OSH "ARM64_BARRIER_OSH"))
+	((:NSHLD "ARM64_BARRIER_NSHLD"))
+	((:NSHST "ARM64_BARRIER_NSHST"))
+	((:NSH "ARM64_BARRIER_NSH"))
+	((:ISHLD "ARM64_BARRIER_ISHLD"))
+	((:ISHST "ARM64_BARRIER_ISHST"))
+	((:ISH "ARM64_BARRIER_ISH"))
+	((:LD  "ARM64_BARRIER_LD"))
+	((:ST  "ARM64_BARRIER_ST"))
+	((:SY  "ARM64_BARRIER_SY"))
+)
+
+(cstruct cs-arm64-op "cs_arm64_op" 
+         (vector-index "vector_index" :type :int)
+         (vas "vas" :type arm64-vas)
+         (vess "vess" :type arm64-vess)
+         (shift.type "shift.type" :type arm64-shifter)
+         (shift.value "shift.value" :type :unsigned-int)
+         (ext "ext" :type arm64-extender)
+         (type "type" :type arm64-op-type)
+         (reg "reg" :type :unsigned-int)
+         (imm "imm" :type int64-t)
+         (fp "fp" :type :double)
+         (mem "mem" :type (:struct arm64-op-mem))
+         (pstate "pstate" :type arm64-pstate)
+         (sys "sys" :type :unsigned-int)
+         (prefetch "prefetch" :type arm64-prefetch-op)
+         (barrier "barrier" :type arm64-barrier-op)
+         )
        
 (cstruct cs-arm64 "cs_arm64"
          (cc "cc" :type arm64-cc)
-         ;; (update_flags "update_flags" :type arm64-update-flags)
-         ;; (cc "cc" :type arm64-cc)
-         ;; (cc "cc" :type arm64-cc)
-         ;; (cc "cc" :type arm64-cc)
+         (update-flags "update_flags" :type bool)
+         (writeback "writeback" :type bool)
+         (op-count "op_count" :type uint8-t)
+         (operands "operands" :type (:struct cs-arm64-op) :count 8)
          )
 
 ;;;; arm

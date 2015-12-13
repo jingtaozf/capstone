@@ -4,8 +4,8 @@
 ;; Description: 
 ;; Author: Jingtao Xu <jingtaozf@gmail.com>
 ;; Created: 2015.12.06 14:45:47(+0800)
-;; Last-Updated: 2015.12.13 12:44:09(+0800)
-;;     Update #: 87
+;; Last-Updated: 2015.12.13 20:54:13(+0800)
+;;     Update #: 91
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Commentary: 
@@ -73,6 +73,7 @@
          (progn ,@body)
        (cs-close ,handle))))
 
+;;;; arm
 (defstruct arm-op-mem
   base index scale disp)
 (defstruct arm-op
@@ -82,12 +83,6 @@
 (defstruct insn-arm
   usermode vector-size vector-data cps-mode cps-flag cc update-flags writeback
   mem-barrier op-count operands)
-(defstruct insn-detail
-  regs-read regs-read-count regs-write regs-write-count groups groups-count
-  arm)
-
-(defstruct insn 
-  id address size bytes mnemonic op-str detail)
 
 (defun cs-arm-op-mem-to-lisp (arm-op)
   (macrolet ((%arm-op-mem (x)
@@ -136,6 +131,17 @@
                                       (incf-pointer p size-of-cs-arm-op)
                                    finally (return operands))
     ))))
+
+
+;;;; arm64
+
+;;;; disassemble
+(defstruct insn-detail
+  regs-read regs-read-count regs-write regs-write-count groups groups-count
+  arm arm64)
+
+(defstruct insn 
+  id address size bytes mnemonic op-str detail)
 
 (defun cs-detail-to-lisp (detail)
   (macrolet ((%detail (x)
