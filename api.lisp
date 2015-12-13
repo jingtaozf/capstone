@@ -4,8 +4,8 @@
 ;; Description: 
 ;; Author: Jingtao Xu <jingtaozf@gmail.com>
 ;; Created: 2015.12.06 14:45:47(+0800)
-;; Last-Updated: 2015.12.12 20:51:32(+0800)
-;;     Update #: 86
+;; Last-Updated: 2015.12.13 12:44:09(+0800)
+;;     Update #: 87
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Commentary: 
@@ -58,6 +58,9 @@
   (with-foreign-object (csh 'csh)
     (setf (mem-ref csh 'csh) handle)
     (cs-funcall .cs-close csh)))
+
+(defun cs-reg-name (handle reg-index)
+  (.cs-reg-name handle reg-index))
 
 (defvar *capstone-arch* nil)
 (defvar *capstone-mode* nil)

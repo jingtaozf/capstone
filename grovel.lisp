@@ -1,5 +1,7 @@
 (in-package #:capstone)
 
+;;;; headers
+
 (cc-flags #.(format nil "-I~A" *capstone-include-dir*))
 
 (include "arm.h")
@@ -22,52 +24,41 @@
 (ctype uint16-t "uint16_t")
 (ctype csh "csh")
 
-(cenum cs-arch
-       ((:ARM "CS_ARCH_ARM"))
-       ((:ARM64 "CS_ARCH_ARM64"))
-       ((:MIPS "CS_ARCH_MIPS"))
-       ((:X86 "CS_ARCH_X86"))
-       ((:PPC "CS_ARCH_PPC"))
-       ((:SPARC "CS_ARCH_SPARC"))
-       ((:SYSZ "CS_ARCH_SYSZ"))
-       ((:XCORE "CS_ARCH_XCORE"))
-       ((:MAX "CS_ARCH_MAX"))
-       ((:ALL "CS_ARCH_ALL")))
+;;;; x86
+(cstruct cs-x86 "cs_x86"
+         )
 
-(cenum cs-mode
-       ((:LITTLE "CS_MODE_LITTLE_ENDIAN"))
-       ((:ARM "CS_MODE_ARM"))
-       ((:16 "CS_MODE_16"))
-       ((:32 "CS_MODE_32"))
-       ((:64 "CS_MODE_64"))
-       ((:THUMB "CS_MODE_THUMB"))
-       ((:MCLASS "CS_MODE_MCLASS"))
-       ((:V8 "CS_MODE_V8"))
-       ((:MICRO "CS_MODE_MICRO"))
-       ((:MIPS3 "CS_MODE_MIPS3"))
-       ((:MIPS32R6 "CS_MODE_MIPS32R6"))
-       ((:MIPSGP64 "CS_MODE_MIPSGP64"))
-       ((:V9 "CS_MODE_V9"))
-       ((:BIG "CS_MODE_BIG_ENDIAN"))
-       ((:MIPS32 "CS_MODE_MIPS32"))
-       ((:MIPS64 "CS_MODE_MIPS64")))
+;;;; arm64
+(cenum arm64-cc
+	((:ARM64_CC_INVALID "ARM64_CC_INVALID"))
+	((:ARM64_CC_EQ "ARM64_CC_EQ" ))    ;; Equal
+	((:ARM64_CC_NE "ARM64_CC_NE" ))    ;; Not equal:                 Not equal, or unordered
+	((:ARM64_CC_HS "ARM64_CC_HS" ))    ;; Unsigned higher or same:   >, ==, or unordered
+	((:ARM64_CC_LO "ARM64_CC_LO" ))    ;; Unsigned lower or same:    Less than
+	((:ARM64_CC_MI "ARM64_CC_MI" ))    ;; Minus, negative:           Less than
+	((:ARM64_CC_PL "ARM64_CC_PL" ))    ;; Plus, positive or zero:    >, ==, or unordered
+	((:ARM64_CC_VS "ARM64_CC_VS" ))    ;; Overflow:                  Unordered
+	((:ARM64_CC_VC "ARM64_CC_VC" ))    ;; No overflow:               Ordered
+	((:ARM64_CC_HI "ARM64_CC_HI" ))    ;; Unsigned higher:           Greater than, or unordered
+	((:ARM64_CC_LS "ARM64_CC_LS" ))    ;; Unsigned lower or same:    Less than or equal
+	((:ARM64_CC_GE "ARM64_CC_GE" ))    ;; Greater than or equal:     Greater than or equal
+	((:ARM64_CC_LT "ARM64_CC_LT" ))    ;; Less than:                 Less than, or unordered
+	((:ARM64_CC_GT "ARM64_CC_GT" ))    ;; Signed greater than:       Greater than
+	((:ARM64_CC_LE "ARM64_CC_LE" ))    ;; Signed less than or equal: <, ==, or unordered
+	((:ARM64_CC_AL "ARM64_CC_AL" ))    ;; Always (unconditional):    Always (unconditional)
+	((:ARM64_CC_NV "ARM64_CC_NV" ))    ;; Always (unconditional):   Always (unconditional)
+        )
 
-(cenum cs-opt-type
-       ((:SYNTAX "CS_OPT_SYNTAX"))
-       ((:DETAIL "CS_OPT_DETAIL"))
-       ((:MODE "CS_OPT_MODE"))
-       ((:MEM "CS_OPT_MEM"))
-       ((:SKIPDATA "CS_OPT_SKIPDATA"))
-       ((:SKIPDATA_SETUP "CS_OPT_SKIPDATA_SETUP")))
+       
+(cstruct cs-arm64 "cs_arm64"
+         (cc "cc" :type arm64-cc)
+         (update_flags "update_flags" :type arm64-update_flags)
+         (cc "cc" :type arm64-cc)
+         (cc "cc" :type arm64-cc)
+         (cc "cc" :type arm64-cc)
+         )
 
-(cenum cs-opt-value
-       ((:OFF "CS_OPT_OFF"))
-       ((:ON "CS_OPT_ON"))
-       ((:SYNTAX_DEFAULT "CS_OPT_SYNTAX_DEFAULT"))
-       ((:SYNTAX_INTEL "CS_OPT_SYNTAX_INTEL"))
-       ((:SYNTAX_ATT "CS_OPT_SYNTAX_ATT"))
-       ((:SYNTAX_NOREGNAME "CS_OPT_SYNTAX_NOREGNAME")))
-
+;;;; arm
 (cenum arm-vectordata-type
        ((:INVALID "ARM_VECTORDATA_INVALID"))
 
@@ -240,6 +231,76 @@
 
          (operands "operands" :type (:struct cs-arm-op) :count 36) 	;; operands for this instruction.
          )
+(cstruct cs-arm "cs_arm" 
+         )
+
+;;;; mips
+(cstruct cs-mips "cs_mips"
+         )
+
+;;;; ppc
+(cstruct cs-ppc "cs_ppc"
+         )
+
+;;;; sparc
+(cstruct cs-sparc "cs_sparc"
+         )
+
+;;;; sysz
+(cstruct cs-sysz "cs_sysz"
+         )
+
+;;;; xcore
+(cstruct cs-xcore "cs_xcore"
+         )
+
+;;;; capstone
+(cenum cs-arch
+       ((:ARM "CS_ARCH_ARM"))
+       ((:ARM64 "CS_ARCH_ARM64"))
+       ((:MIPS "CS_ARCH_MIPS"))
+       ((:X86 "CS_ARCH_X86"))
+       ((:PPC "CS_ARCH_PPC"))
+       ((:SPARC "CS_ARCH_SPARC"))
+       ((:SYSZ "CS_ARCH_SYSZ"))
+       ((:XCORE "CS_ARCH_XCORE"))
+       ((:MAX "CS_ARCH_MAX"))
+       ((:ALL "CS_ARCH_ALL")))
+
+(cenum cs-mode
+       ((:LITTLE "CS_MODE_LITTLE_ENDIAN"))
+       ((:ARM "CS_MODE_ARM"))
+       ((:16 "CS_MODE_16"))
+       ((:32 "CS_MODE_32"))
+       ((:64 "CS_MODE_64"))
+       ((:THUMB "CS_MODE_THUMB"))
+       ((:MCLASS "CS_MODE_MCLASS"))
+       ((:V8 "CS_MODE_V8"))
+       ((:MICRO "CS_MODE_MICRO"))
+       ((:MIPS3 "CS_MODE_MIPS3"))
+       ((:MIPS32R6 "CS_MODE_MIPS32R6"))
+       ((:MIPSGP64 "CS_MODE_MIPSGP64"))
+       ((:V9 "CS_MODE_V9"))
+       ((:BIG "CS_MODE_BIG_ENDIAN"))
+       ((:MIPS32 "CS_MODE_MIPS32"))
+       ((:MIPS64 "CS_MODE_MIPS64")))
+
+(cenum cs-opt-type
+       ((:SYNTAX "CS_OPT_SYNTAX"))
+       ((:DETAIL "CS_OPT_DETAIL"))
+       ((:MODE "CS_OPT_MODE"))
+       ((:MEM "CS_OPT_MEM"))
+       ((:SKIPDATA "CS_OPT_SKIPDATA"))
+       ((:SKIPDATA_SETUP "CS_OPT_SKIPDATA_SETUP")))
+
+(cenum cs-opt-value
+       ((:OFF "CS_OPT_OFF"))
+       ((:ON "CS_OPT_ON"))
+       ((:SYNTAX_DEFAULT "CS_OPT_SYNTAX_DEFAULT"))
+       ((:SYNTAX_INTEL "CS_OPT_SYNTAX_INTEL"))
+       ((:SYNTAX_ATT "CS_OPT_SYNTAX_ATT"))
+       ((:SYNTAX_NOREGNAME "CS_OPT_SYNTAX_NOREGNAME")))
+
 (cstruct cs-detail "cs_detail" 
          (regs-read "regs_read" :type uint8-t :count 12)
          (regs-read-count "regs_read_count" :type uint8-t)
@@ -247,7 +308,14 @@
          (regs-write-count "regs_write_count" :type uint8-t)
          (groups "groups" :type uint8-t :count 8)
          (groups-count "groups_count" :type uint8-t)
+         (x86 "x86" :type (:struct cs-x86))
+         (arm64 "arm64" :type (:struct cs-arm64))
          (arm "arm" :type (:struct cs-arm))
+         (mips "mips" :type (:struct cs-mips))
+         (ppc "ppc" :type (:struct cs-ppc))
+         (sparc "sparc" :type (:struct cs-sparc))
+         (sysz "sysz" :type (:struct cs-sysz))
+         (xcore "xcore" :type (:struct cs-xcore))
          )
 (cstruct cs-insn "cs_insn" 
          (id "id" :type :unsigned-int)
