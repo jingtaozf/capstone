@@ -18,11 +18,9 @@
 (ctype size-t  "size_t")
 (ctype csh  "csh")
 (ctype uint8-t  "uint8_t")
-(ctype bool  "bool")
 (ctype int32-t "int32_t")
 (ctype uint64-t "uint64_t")
 (ctype uint16-t "uint16_t")
-(ctype csh "csh")
 
 ;;;; x86
 (cstruct cs-x86 "cs_x86"
@@ -52,10 +50,10 @@
        
 (cstruct cs-arm64 "cs_arm64"
          (cc "cc" :type arm64-cc)
-         (update_flags "update_flags" :type arm64-update_flags)
-         (cc "cc" :type arm64-cc)
-         (cc "cc" :type arm64-cc)
-         (cc "cc" :type arm64-cc)
+         ;; (update_flags "update_flags" :type arm64-update-flags)
+         ;; (cc "cc" :type arm64-cc)
+         ;; (cc "cc" :type arm64-cc)
+         ;; (cc "cc" :type arm64-cc)
          )
 
 ;;;; arm
@@ -212,17 +210,17 @@
          (fp "fp" :type :double)
          (mem "mem" :type (:struct arm-op-mem))
          (setend "setend" :type arm-setend-type)
-         (subtracted "subtracted" :type bool)
+         (subtracted "subtracted" :type (:boolean :unsigned-char))
          )
 (cstruct cs-arm "cs_arm" 
-         (usermode "usermode" :type bool) 	;; User-mode registers to be loaded (for LDM/STM instructions)
+         (usermode "usermode" :type (:boolean :unsigned-char)) 	;; User-mode registers to be loaded (for LDM/STM instructions)
          (vector-size "vector_size" :type :int)  	;; Scalar size for vector instructions
          (vector-data "vector_data" :type arm-vectordata-type)  ;; Data type for elements of vector instructions
          (cps-mode "cps_mode" :type arm-cpsmode-type) 	;; CPS mode for CPS instruction
          (cps-flag "cps_flag" :type arm-cpsflag-type) 	;; CPS mode for CPS instruction
          (cc "cc" :type arm-cc) 			;; conditional code for this insn
-         (update-flags "update_flags" :type bool) 	;; does this insn update flags?
-         (writeback "writeback" :type bool) 		;; does this insn write-back?
+         (update-flags "update_flags" :type (:boolean :unsigned-char)) 	;; does this insn update flags?
+         (writeback "writeback" :type (:boolean :unsigned-char)) 		;; does this insn write-back?
          (mem-barrier "mem_barrier" :type arm-mem-barrier) 	;; Option for some memory barrier instructions
 
          ;; Number of operands of this instruction, 
@@ -231,9 +229,6 @@
 
          (operands "operands" :type (:struct cs-arm-op) :count 36) 	;; operands for this instruction.
          )
-(cstruct cs-arm "cs_arm" 
-         )
-
 ;;;; mips
 (cstruct cs-mips "cs_mips"
          )

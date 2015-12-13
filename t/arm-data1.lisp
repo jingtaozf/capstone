@@ -11,14 +11,14 @@
                                 :REGS-WRITE-COUNT 1
                                 :GROUPS #(1 147)
                                 :GROUPS-COUNT 2
-                                :ARM #S(INSN-ARM :USERMODE 0
+                                :ARM #S(INSN-ARM :USERMODE NIL
                                                  :VECTOR-SIZE 0
                                                  :VECTOR-DATA :INVALID
                                                  :CPS-MODE :INVALID0
                                                  :CPS-FLAG :INVALID
                                                  :CC :AL
-                                                 :UPDATE-FLAGS 0
-                                                 :WRITEBACK 0
+                                                 :UPDATE-FLAGS NIL
+                                                 :WRITEBACK NIL
                                                  :MEM-BARRIER :INVALID
                                                  :OP-COUNT 1
                                                  :OPERANDS #(#S(ARM-OP :VECTOR-INDEX -1
@@ -33,7 +33,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)))))
+                                                                       :SUBTRACTED NIL)))))
  #S(INSN :ID 212
          :ADDRESS 4100
          :SIZE 4
@@ -46,14 +46,14 @@
                                 :REGS-WRITE-COUNT 0
                                 :GROUPS #(147)
                                 :GROUPS-COUNT 1
-                                :ARM #S(INSN-ARM :USERMODE 0
+                                :ARM #S(INSN-ARM :USERMODE NIL
                                                  :VECTOR-SIZE 0
                                                  :VECTOR-DATA :INVALID
                                                  :CPS-MODE :INVALID0
                                                  :CPS-FLAG :INVALID
                                                  :CC :AL
-                                                 :UPDATE-FLAGS 0
-                                                 :WRITEBACK 1
+                                                 :UPDATE-FLAGS NIL
+                                                 :WRITEBACK T
                                                  :MEM-BARRIER :INVALID
                                                  :OP-COUNT 2
                                                  :OPERANDS #(#S(ARM-OP :VECTOR-INDEX -1
@@ -68,7 +68,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -81,7 +81,7 @@
                                                                                           :SCALE 1
                                                                                           :DISP -4)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)))))
+                                                                       :SUBTRACTED NIL)))))
  #S(INSN :ID 8
          :ADDRESS 4104
          :SIZE 4
@@ -94,14 +94,14 @@
                                 :REGS-WRITE-COUNT 0
                                 :GROUPS #(147)
                                 :GROUPS-COUNT 1
-                                :ARM #S(INSN-ARM :USERMODE 0
+                                :ARM #S(INSN-ARM :USERMODE NIL
                                                  :VECTOR-SIZE 0
                                                  :VECTOR-DATA :INVALID
                                                  :CPS-MODE :INVALID0
                                                  :CPS-FLAG :INVALID
                                                  :CC :EQ
-                                                 :UPDATE-FLAGS 0
-                                                 :WRITEBACK 0
+                                                 :UPDATE-FLAGS NIL
+                                                 :WRITEBACK NIL
                                                  :MEM-BARRIER :INVALID
                                                  :OP-COUNT 3
                                                  :OPERANDS #(#S(ARM-OP :VECTOR-INDEX -1
@@ -116,7 +116,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -129,7 +129,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -142,7 +142,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)))))
+                                                                       :SUBTRACTED NIL)))))
  #S(INSN :ID 212
          :ADDRESS 4108
          :SIZE 4
@@ -155,14 +155,14 @@
                                 :REGS-WRITE-COUNT 0
                                 :GROUPS #(147)
                                 :GROUPS-COUNT 1
-                                :ARM #S(INSN-ARM :USERMODE 0
+                                :ARM #S(INSN-ARM :USERMODE NIL
                                                  :VECTOR-SIZE 0
                                                  :VECTOR-DATA :INVALID
                                                  :CPS-MODE :INVALID0
                                                  :CPS-FLAG :INVALID
                                                  :CC :AL
-                                                 :UPDATE-FLAGS 0
-                                                 :WRITEBACK 1
+                                                 :UPDATE-FLAGS NIL
+                                                 :WRITEBACK T
                                                  :MEM-BARRIER :INVALID
                                                  :OP-COUNT 2
                                                  :OPERANDS #(#S(ARM-OP :VECTOR-INDEX -1
@@ -177,7 +177,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -190,7 +190,7 @@
                                                                                           :SCALE 1
                                                                                           :DISP -992)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)))))
+                                                                       :SUBTRACTED NIL)))))
  #S(INSN :ID 74
          :ADDRESS 4112
          :SIZE 4
@@ -203,14 +203,14 @@
                                 :REGS-WRITE-COUNT 0
                                 :GROUPS #(147)
                                 :GROUPS-COUNT 1
-                                :ARM #S(INSN-ARM :USERMODE 0
+                                :ARM #S(INSN-ARM :USERMODE NIL
                                                  :VECTOR-SIZE 0
                                                  :VECTOR-DATA :INVALID
                                                  :CPS-MODE :INVALID0
                                                  :CPS-FLAG :INVALID
                                                  :CC :EQ
-                                                 :UPDATE-FLAGS 0
-                                                 :WRITEBACK 0
+                                                 :UPDATE-FLAGS NIL
+                                                 :WRITEBACK NIL
                                                  :MEM-BARRIER :INVALID
                                                  :OP-COUNT 6
                                                  :OPERANDS #(#S(ARM-OP :VECTOR-INDEX -1
@@ -225,7 +225,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND :LE
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -238,7 +238,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND :INVALID
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -251,7 +251,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -264,7 +264,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -277,7 +277,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND :BE
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -290,7 +290,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)))))
+                                                                       :SUBTRACTED NIL)))))
  #S(INSN :ID 80
          :ADDRESS 4116
          :SIZE 4
@@ -303,14 +303,14 @@
                                 :REGS-WRITE-COUNT 0
                                 :GROUPS #(147)
                                 :GROUPS-COUNT 1
-                                :ARM #S(INSN-ARM :USERMODE 0
+                                :ARM #S(INSN-ARM :USERMODE NIL
                                                  :VECTOR-SIZE 0
                                                  :VECTOR-DATA :INVALID
                                                  :CPS-MODE :INVALID0
                                                  :CPS-FLAG :INVALID
                                                  :CC :AL
-                                                 :UPDATE-FLAGS 0
-                                                 :WRITEBACK 0
+                                                 :UPDATE-FLAGS NIL
+                                                 :WRITEBACK NIL
                                                  :MEM-BARRIER :INVALID
                                                  :OP-COUNT 2
                                                  :OPERANDS #(#S(ARM-OP :VECTOR-INDEX -1
@@ -325,7 +325,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -338,7 +338,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND :INVALID
-                                                                       :SUBTRACTED 0)))))
+                                                                       :SUBTRACTED NIL)))))
  #S(INSN :ID 203
          :ADDRESS 4120
          :SIZE 4
@@ -351,14 +351,14 @@
                                 :REGS-WRITE-COUNT 0
                                 :GROUPS #(147)
                                 :GROUPS-COUNT 1
-                                :ARM #S(INSN-ARM :USERMODE 0
+                                :ARM #S(INSN-ARM :USERMODE NIL
                                                  :VECTOR-SIZE 0
                                                  :VECTOR-DATA :INVALID
                                                  :CPS-MODE :INVALID0
                                                  :CPS-FLAG :INVALID
                                                  :CC :AL
-                                                 :UPDATE-FLAGS 0
-                                                 :WRITEBACK 0
+                                                 :UPDATE-FLAGS NIL
+                                                 :WRITEBACK NIL
                                                  :MEM-BARRIER :INVALID
                                                  :OP-COUNT 2
                                                  :OPERANDS #(#S(ARM-OP :VECTOR-INDEX -1
@@ -373,7 +373,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -386,7 +386,7 @@
                                                                                           :SCALE 1
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)))))
+                                                                       :SUBTRACTED NIL)))))
  #S(INSN :ID 23
          :ADDRESS 4124
          :SIZE 4
@@ -399,14 +399,14 @@
                                 :REGS-WRITE-COUNT 1
                                 :GROUPS #(147)
                                 :GROUPS-COUNT 1
-                                :ARM #S(INSN-ARM :USERMODE 0
+                                :ARM #S(INSN-ARM :USERMODE NIL
                                                  :VECTOR-SIZE 0
                                                  :VECTOR-DATA :INVALID
                                                  :CPS-MODE :INVALID0
                                                  :CPS-FLAG :INVALID
                                                  :CC :AL
-                                                 :UPDATE-FLAGS 1
-                                                 :WRITEBACK 0
+                                                 :UPDATE-FLAGS T
+                                                 :WRITEBACK NIL
                                                  :MEM-BARRIER :INVALID
                                                  :OP-COUNT 2
                                                  :OPERANDS #(#S(ARM-OP :VECTOR-INDEX -1
@@ -421,7 +421,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -434,7 +434,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND :INVALID
-                                                                       :SUBTRACTED 0)))))
+                                                                       :SUBTRACTED NIL)))))
  #S(INSN :ID 124
          :ADDRESS 4128
          :SIZE 4
@@ -447,14 +447,14 @@
                                 :REGS-WRITE-COUNT 0
                                 :GROUPS #(147)
                                 :GROUPS-COUNT 1
-                                :ARM #S(INSN-ARM :USERMODE 0
+                                :ARM #S(INSN-ARM :USERMODE NIL
                                                  :VECTOR-SIZE 0
                                                  :VECTOR-DATA :INVALID
                                                  :CPS-MODE :INVALID0
                                                  :CPS-FLAG :INVALID
                                                  :CC :AL
-                                                 :UPDATE-FLAGS 0
-                                                 :WRITEBACK 0
+                                                 :UPDATE-FLAGS NIL
+                                                 :WRITEBACK NIL
                                                  :MEM-BARRIER :INVALID
                                                  :OP-COUNT 1
                                                  :OPERANDS #(#S(ARM-OP :VECTOR-INDEX -1
@@ -469,7 +469,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND :BE
-                                                                       :SUBTRACTED 0)))))
+                                                                       :SUBTRACTED NIL)))))
  #S(INSN :ID 57
          :ADDRESS 4132
          :SIZE 4
@@ -482,14 +482,14 @@
                                 :REGS-WRITE-COUNT 0
                                 :GROUPS #(147)
                                 :GROUPS-COUNT 1
-                                :ARM #S(INSN-ARM :USERMODE 1
+                                :ARM #S(INSN-ARM :USERMODE T
                                                  :VECTOR-SIZE 0
                                                  :VECTOR-DATA :INVALID
                                                  :CPS-MODE :INVALID0
                                                  :CPS-FLAG :INVALID
                                                  :CC :AL
-                                                 :UPDATE-FLAGS 0
-                                                 :WRITEBACK 0
+                                                 :UPDATE-FLAGS NIL
+                                                 :WRITEBACK NIL
                                                  :MEM-BARRIER :INVALID
                                                  :OP-COUNT 4
                                                  :OPERANDS #(#S(ARM-OP :VECTOR-INDEX -1
@@ -504,7 +504,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -517,7 +517,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -530,7 +530,7 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0)
+                                                                       :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
@@ -543,4 +543,4 @@
                                                                                           :SCALE 0
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED 0))))))
+                                                                       :SUBTRACTED NIL))))))
