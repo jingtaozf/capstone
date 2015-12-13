@@ -22,7 +22,7 @@ in #p\"capstone-include-dir.lisp\".
     :serial t
     :components
     ((:file "packages")
-     (:file "grovel-include-dir")
+     (:file "ffi-setup")
      (grovel-file "grovel")
      (:file "ffi-interface")
      (:file "api"))

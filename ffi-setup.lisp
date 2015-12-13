@@ -1,5 +1,6 @@
 (in-package #:capstone)
 
+;;;; grovl include path
 (defun read-path ()
   (format *query-io* "Enter directory containing capstone's C header files: ")
   (cl:list (read-line *query-io*)))
@@ -25,3 +26,6 @@
                   (when (boundp '*capstone-include-dir*)
                     (cl-fad:directory-exists-p *capstone-include-dir*))
                   (query-user-for-include-dir)))
+
+;;;; cffi base types
+(defctype bool (:boolean :unsigned-char))

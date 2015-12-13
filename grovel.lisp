@@ -210,17 +210,17 @@
          (fp "fp" :type :double)
          (mem "mem" :type (:struct arm-op-mem))
          (setend "setend" :type arm-setend-type)
-         (subtracted "subtracted" :type (:boolean :unsigned-char))
+         (subtracted "subtracted" :type bool)
          )
 (cstruct cs-arm "cs_arm" 
-         (usermode "usermode" :type (:boolean :unsigned-char)) 	;; User-mode registers to be loaded (for LDM/STM instructions)
+         (usermode "usermode" :type bool) 	;; User-mode registers to be loaded (for LDM/STM instructions)
          (vector-size "vector_size" :type :int)  	;; Scalar size for vector instructions
          (vector-data "vector_data" :type arm-vectordata-type)  ;; Data type for elements of vector instructions
          (cps-mode "cps_mode" :type arm-cpsmode-type) 	;; CPS mode for CPS instruction
          (cps-flag "cps_flag" :type arm-cpsflag-type) 	;; CPS mode for CPS instruction
          (cc "cc" :type arm-cc) 			;; conditional code for this insn
-         (update-flags "update_flags" :type (:boolean :unsigned-char)) 	;; does this insn update flags?
-         (writeback "writeback" :type (:boolean :unsigned-char)) 		;; does this insn write-back?
+         (update-flags "update_flags" :type bool) 	;; does this insn update flags?
+         (writeback "writeback" :type bool) 		;; does this insn write-back?
          (mem-barrier "mem_barrier" :type arm-mem-barrier) 	;; Option for some memory barrier instructions
 
          ;; Number of operands of this instruction, 
