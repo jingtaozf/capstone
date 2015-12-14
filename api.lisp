@@ -4,8 +4,8 @@
 ;; Description: 
 ;; Author: Jingtao Xu <jingtaozf@gmail.com>
 ;; Created: 2015.12.06 14:45:47(+0800)
-;; Last-Updated: 2015.12.13 20:54:13(+0800)
-;;     Update #: 91
+;; Last-Updated: 2015.12.14 22:49:15(+0800)
+;;     Update #: 96
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Commentary: 
@@ -100,11 +100,11 @@
                :shift.type (%arm-op shift.type)
                :shift.value (%arm-op shift.value)
                :type (%arm-op type)
-               :reg (%arm-op reg)
-               :imm (%arm-op imm)
-               :fp (%arm-op fp)
-               :mem (cs-arm-op-mem-to-lisp arm-op)
-               :setend (%arm-op setend)
+               :reg (and (eq (%arm-op type) :reg) (%arm-op reg))
+               :imm (and (eq (%arm-op type) :imm) (%arm-op imm))
+               :fp (and (eq (%arm-op type) :fp) (%arm-op fp))
+               :mem (and (eq (%arm-op type) :mem) (cs-arm-op-mem-to-lisp arm-op))
+               :setend (and (eq (%arm-op type) :setend) (%arm-op setend))
                :subtracted (%arm-op subtracted)
   )))
 (defun cs-arm-to-lisp (detail)

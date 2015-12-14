@@ -25,15 +25,13 @@
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :IMM
-                                                                       :REG 4028
+                                                                       :REG NIL
                                                                        :IMM 4028
-                                                                       :FP 1.99D-320
-                                                                       :MEM #S(ARM-OP-MEM :BASE 4028
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED NIL)))))
+                                                                       :SUBTRACTED NIL)))
+                                :ARM64 NIL))
  #S(INSN :ID 212
          :ADDRESS 4100
          :SIZE 4
@@ -61,27 +59,25 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 10
-                                                                       :IMM 10
-                                                                       :FP 5.0D-323
-                                                                       :MEM #S(ARM-OP-MEM :BASE 10
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :MEM
-                                                                       :REG 12
-                                                                       :IMM 12
-                                                                       :FP 6.0D-323
+                                                                       :REG NIL
+                                                                       :IMM NIL
+                                                                       :FP NIL
                                                                        :MEM #S(ARM-OP-MEM :BASE 12
                                                                                           :INDEX 0
                                                                                           :SCALE 1
                                                                                           :DISP -4)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED NIL)))))
+                                                                       :SUBTRACTED NIL)))
+                                :ARM64 NIL))
  #S(INSN :ID 8
          :ADDRESS 4104
          :SIZE 4
@@ -109,12 +105,9 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 66
-                                                                       :IMM 66
-                                                                       :FP 3.26D-322
-                                                                       :MEM #S(ARM-OP-MEM :BASE 66
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
@@ -122,12 +115,9 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 66
-                                                                       :IMM 66
-                                                                       :FP 3.26D-322
-                                                                       :MEM #S(ARM-OP-MEM :BASE 66
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
@@ -135,14 +125,12 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 66
-                                                                       :IMM 66
-                                                                       :FP 3.26D-322
-                                                                       :MEM #S(ARM-OP-MEM :BASE 66
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED NIL)))))
+                                                                       :SUBTRACTED NIL)))
+                                :ARM64 NIL))
  #S(INSN :ID 212
          :ADDRESS 4108
          :SIZE 4
@@ -170,27 +158,25 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 74
-                                                                       :IMM 74
-                                                                       :FP 3.66D-322
-                                                                       :MEM #S(ARM-OP-MEM :BASE 74
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :MEM
-                                                                       :REG 68
-                                                                       :IMM 68
-                                                                       :FP 3.36D-322
+                                                                       :REG NIL
+                                                                       :IMM NIL
+                                                                       :FP NIL
                                                                        :MEM #S(ARM-OP-MEM :BASE 68
                                                                                           :INDEX 0
                                                                                           :SCALE 1
                                                                                           :DISP -992)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED NIL)))))
+                                                                       :SUBTRACTED NIL)))
+                                :ARM64 NIL))
  #S(INSN :ID 74
          :ADDRESS 4112
          :SIZE 4
@@ -217,80 +203,63 @@
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :PIMM
-                                                                       :REG 2
-                                                                       :IMM 2
-                                                                       :FP 1.0D-323
-                                                                       :MEM #S(ARM-OP-MEM :BASE 2
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
-                                                                       :SETEND :LE
+                                                                       :REG NIL
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
+                                                                       :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :IMM
-                                                                       :REG 0
+                                                                       :REG NIL
                                                                        :IMM 0
-                                                                       :FP 0.0D0
-                                                                       :MEM #S(ARM-OP-MEM :BASE 0
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
-                                                                       :SETEND :INVALID
+                                                                       :FP NIL
+                                                                       :MEM NIL
+                                                                       :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 66
-                                                                       :IMM 66
-                                                                       :FP 3.26D-322
-                                                                       :MEM #S(ARM-OP-MEM :BASE 66
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :CIMM
-                                                                       :REG 3
-                                                                       :IMM 3
-                                                                       :FP 1.5D-323
-                                                                       :MEM #S(ARM-OP-MEM :BASE 3
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :REG NIL
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :CIMM
-                                                                       :REG 1
-                                                                       :IMM 1
-                                                                       :FP 5.0D-324
-                                                                       :MEM #S(ARM-OP-MEM :BASE 1
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
-                                                                       :SETEND :BE
+                                                                       :REG NIL
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
+                                                                       :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :IMM
-                                                                       :REG 7
+                                                                       :REG NIL
                                                                        :IMM 7
-                                                                       :FP 3.5D-323
-                                                                       :MEM #S(ARM-OP-MEM :BASE 7
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED NIL)))))
+                                                                       :SUBTRACTED NIL)))
+                                :ARM64 NIL))
  #S(INSN :ID 80
          :ADDRESS 4116
          :SIZE 4
@@ -318,27 +287,22 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 66
-                                                                       :IMM 66
-                                                                       :FP 3.26D-322
-                                                                       :MEM #S(ARM-OP-MEM :BASE 66
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :IMM
-                                                                       :REG 0
+                                                                       :REG NIL
                                                                        :IMM 0
-                                                                       :FP 0.0D0
-                                                                       :MEM #S(ARM-OP-MEM :BASE 0
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
-                                                                       :SETEND :INVALID
-                                                                       :SUBTRACTED NIL)))))
+                                                                       :FP NIL
+                                                                       :MEM NIL
+                                                                       :SETEND NIL
+                                                                       :SUBTRACTED NIL)))
+                                :ARM64 NIL))
  #S(INSN :ID 203
          :ADDRESS 4120
          :SIZE 4
@@ -366,27 +330,25 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 69
-                                                                       :IMM 69
-                                                                       :FP 3.4D-322
-                                                                       :MEM #S(ARM-OP-MEM :BASE 69
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :MEM
-                                                                       :REG 67
-                                                                       :IMM 67
-                                                                       :FP 1.442957138187D-312
+                                                                       :REG NIL
+                                                                       :IMM NIL
+                                                                       :FP NIL
                                                                        :MEM #S(ARM-OP-MEM :BASE 67
                                                                                           :INDEX 68
                                                                                           :SCALE 1
                                                                                           :DISP 0)
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED NIL)))))
+                                                                       :SUBTRACTED NIL)))
+                                :ARM64 NIL))
  #S(INSN :ID 23
          :ADDRESS 4124
          :SIZE 4
@@ -414,27 +376,22 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 69
-                                                                       :IMM 69
-                                                                       :FP 3.4D-322
-                                                                       :MEM #S(ARM-OP-MEM :BASE 69
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :IMM
-                                                                       :REG 0
+                                                                       :REG NIL
                                                                        :IMM 0
-                                                                       :FP 0.0D0
-                                                                       :MEM #S(ARM-OP-MEM :BASE 0
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
-                                                                       :SETEND :INVALID
-                                                                       :SUBTRACTED NIL)))))
+                                                                       :FP NIL
+                                                                       :MEM NIL
+                                                                       :SETEND NIL
+                                                                       :SUBTRACTED NIL)))
+                                :ARM64 NIL))
  #S(INSN :ID 124
          :ADDRESS 4128
          :SIZE 4
@@ -461,15 +418,13 @@
                                                                        :SHIFT.TYPE :INVALID
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :SETEND
-                                                                       :REG 1
-                                                                       :IMM 1
-                                                                       :FP 5.0D-324
-                                                                       :MEM #S(ARM-OP-MEM :BASE 1
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :REG NIL
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND :BE
-                                                                       :SUBTRACTED NIL)))))
+                                                                       :SUBTRACTED NIL)))
+                                :ARM64 NIL))
  #S(INSN :ID 57
          :ADDRESS 4132
          :SIZE 4
@@ -497,12 +452,9 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 66
-                                                                       :IMM 66
-                                                                       :FP 3.26D-322
-                                                                       :MEM #S(ARM-OP-MEM :BASE 66
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
@@ -510,12 +462,9 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 66
-                                                                       :IMM 66
-                                                                       :FP 3.26D-322
-                                                                       :MEM #S(ARM-OP-MEM :BASE 66
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
@@ -523,12 +472,9 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 68
-                                                                       :IMM 68
-                                                                       :FP 3.36D-322
-                                                                       :MEM #S(ARM-OP-MEM :BASE 68
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
                                                                        :SUBTRACTED NIL)
                                                              #S(ARM-OP :VECTOR-INDEX -1
@@ -536,11 +482,9 @@
                                                                        :SHIFT.VALUE 0
                                                                        :TYPE :REG
                                                                        :REG 10
-                                                                       :IMM 10
-                                                                       :FP 5.0D-323
-                                                                       :MEM #S(ARM-OP-MEM :BASE 10
-                                                                                          :INDEX 0
-                                                                                          :SCALE 0
-                                                                                          :DISP 0)
+                                                                       :IMM NIL
+                                                                       :FP NIL
+                                                                       :MEM NIL
                                                                        :SETEND NIL
-                                                                       :SUBTRACTED NIL))))))
+                                                                       :SUBTRACTED NIL)))
+                                :ARM64 NIL)))
