@@ -1,0 +1,12 @@
+
+This system provides support for embedding capstone into Common Lisp via CFFI.
+
+To grovel against a specific copy of capstone's header files, you may need to edit
+
+(defparameter *capstone-include-dir* ...)
+
+in "capstone-include-dir.lisp"
+
+This package is a partial cffi interface for capstone and may only work in Lispowrks.
+
+It is provided to make you can finish a complete capstone FFI interface based on this package.
